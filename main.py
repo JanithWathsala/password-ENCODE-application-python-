@@ -1,11 +1,17 @@
 import tkinter as tk
 from tkinter import ttk
 import base64
+import pyperclip
 
 def add_task(event=None):
     password = task_entry.get()
     encode_password = base64.b64encode(password.encode()).decode()
     encode_num.config(text=f"Encode password:{encode_password}")
+    
+def copy_encode():
+    password = task_entry.get()
+    encode_password = base64.b64encode(password.encode()).decode()
+    pyperclip.copy(encode_password)
 
 root = tk.Tk()
 root.geometry("400x200")
@@ -27,6 +33,9 @@ encode_button.pack(pady=5)
 
 encode_num = ttk.Label(root, text="", font=("arial", 10))
 encode_num.pack()
+
+copy_button = ttk.Button(root, text="Copy to encode")
+copy_button.pack(pady=5)
 
 root.mainloop()
  
